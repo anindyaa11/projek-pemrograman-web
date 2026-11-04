@@ -1,0 +1,246 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    font-family: arial, sans-serif;
+    background-color: #f7f3ea;
+    color: #292d2b;
+}
+
+.hero {
+    padding: 90px 8%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+h1 {
+    color: #24483D;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.slogan {
+    color: #c8795d;
+    font-size: 20px;
+    margin-top: 0 0 18px;
+}
+
+.hero h1 {
+    color: #24483D;
+    font-size: 48px;
+    line-height: 1,2;
+    max-width: 750px;
+    margin: 0 0 20px;
+}
+
+.hero .deskripsi {
+    color: #555b57;
+    font-size: 16px;
+    line-height: 1,8;
+    max-width: 650px;
+    margin: 0 0 28px;
+}
+
+h2 {
+    color: #24483D;
+    font-size: 30px;
+    margin-top: 45px;
+}
+
+.deskripsi {
+    font-size: 17px;
+    line-height: 1,8;
+    max-width: 650px;
+    margin-bottom: 30px;
+}
+
+.tombol {
+    display: inline-block;
+    background-color: #24483d;
+    color: white;
+    padding: 14px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.tombol {
+    background-color: #c8795d;
+}
+
+#layanan {
+    padding: 30px 8% 60px;
+    background-color: white;
+}
+
+.intro-layanan {
+    margin-bottom: 30px;
+    line-height: 1,7;
+}
+
+.container-layanan {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.kartu-layanan {
+    background-color: #f7f3ea;
+    padding: 28px;
+    border-radius: 14px;
+    flex: 1;
+    min-width: 220px;
+    box-sizing: border-box;
+
+}
+
+.kartu-layanan {
+    transform: translateY(-5px);
+}
+
+.ikon-layanan {
+    font-size: 38 px;
+    margin-bottom: 16px;
+}
+
+.kartu-layanan h3 {
+    color: #24483d;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.kartu-layanan p {
+    color: #555b57;
+    line-height: 1,7;
+}
+
+.link-layanan {
+    display: inline-block;
+    margin-top: 12px;
+    color: #24483D;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link-layanan {
+    color: #c8795d;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80%;
+    background-color: #FFFFFF;
+    gap: 24px;
+}
+
+.logo {
+    color: #24483D;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.menu a {
+    color: #292d2b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.menu a, .menu a.aktif {
+    color: #c8795d;
+}
+
+.tombol-login {
+    background-color: #24483D;
+    color: #FFFFFF;
+    padding: 11px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tombol-login {
+    background-color: #c8795d;
+}
+
+.footer {
+    background-color: #24483D;
+    color: #f7f3ea;
+    padding: 45px 8% 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+
+.footer-identitas {
+    max-width: 400px;
+}
+
+.footer-identitas h2 {
+    color: #f7f3ea;
+    font-size: 26px;
+    margin: 0 0 12px;
+}
+
+.footer-identitas p {
+    color: #f7f3ea;
+    line-height: 1.7;
+}
+
+.footer-navigasi {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-navigasi h3 {
+    color: #f7f3ea;
+    margin: 0 0 8px;
+}
+
+.footer-navigasi a {
+    color: #f7f3ea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-navigasi a {
+    color: #c8795d;
+}
+
+.footer-bawah {
+    border-top: 1px solid rgba(247, 243, 234, 0.25);
+    padding-top: 15px;
+    text-align: center;
+}
+
+.footer-bawah p {
+    font-size: 13px;
+    margin: 0;
+}
