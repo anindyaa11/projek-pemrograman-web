@@ -2,15 +2,61 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     margin: 0;
+    width: 100%;
 }
 
-body{
-    margin: 0;
-    font-family: arial, sans-serif;
+body {
+    font-family: Arial, sans-serif;
     background-color: #f7f3ea;
     color: #292d2b;
+    overflow-x: hidden;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: #ffffff;
+    gap: 24px;
+}
+
+.logo {
+    color: #24483d;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.menu a {
+    color: #c8795d;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.menu a:hover,
+.menu a.aktif {
+    color: #24483d;
+}
+
+.tombol-login {
+    background-color: #c8795d;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .hero {
@@ -22,22 +68,21 @@ body{
     align-items: flex-start;
 }
 
+.slogan {
+    color: #c8795d;
+    font-size: 20px;
+    margin: 0 0 18px;
+}
+
 h1 {
-    color: #24483D;
+    color: #24483d;
     font-size: 42px;
     margin-bottom: 10px;
 }
 
-.slogan {
-    color: #c8795d;
-    font-size: 20px;
-    margin-top: 0 0 18px;
-}
-
 .hero h1 {
-    color: #24483D;
     font-size: 48px;
-    line-height: 1,2;
+    line-height: 1.2;
     max-width: 750px;
     margin: 0 0 20px;
 }
@@ -45,27 +90,21 @@ h1 {
 .hero .deskripsi {
     color: #555b57;
     font-size: 16px;
-    line-height: 1,8;
+    line-height: 1.8;
     max-width: 650px;
     margin: 0 0 28px;
 }
 
-h2 {
-    color: #24483D;
-    font-size: 30px;
-    margin-top: 45px;
-}
-
 .deskripsi {
     font-size: 17px;
-    line-height: 1,8;
+    line-height: 1.8;
     max-width: 650px;
     margin-bottom: 30px;
 }
 
 .tombol {
     display: inline-block;
-    background-color: #24483d;
+    background-color: #c8795d;
     color: white;
     padding: 14px 24px;
     text-decoration: none;
@@ -73,8 +112,8 @@ h2 {
     font-weight: bold;
 }
 
-.tombol {
-    background-color: #c8795d;
+.tombol:hover {
+    background-color: #24483d;
 }
 
 #layanan {
@@ -82,9 +121,15 @@ h2 {
     background-color: white;
 }
 
+h2 {
+    color: #24483d;
+    font-size: 30px;
+    margin-top: 45px;
+}
+
 .intro-layanan {
     margin-bottom: 30px;
-    line-height: 1,7;
+    line-height: 1.7;
 }
 
 .container-layanan {
@@ -100,16 +145,14 @@ h2 {
     border-radius: 14px;
     flex: 1;
     min-width: 220px;
-    box-sizing: border-box;
-
 }
 
-.kartu-layanan {
+.kartu-layanan:hover {
     transform: translateY(-5px);
 }
 
 .ikon-layanan {
-    font-size: 38 px;
+    font-size: 38px;
     margin-bottom: 16px;
 }
 
@@ -121,71 +164,107 @@ h2 {
 
 .kartu-layanan p {
     color: #555b57;
-    line-height: 1,7;
+    line-height: 1.7;
 }
 
 .link-layanan {
     display: inline-block;
     margin-top: 12px;
-    color: #24483D;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.link-layanan {
     color: #c8795d;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 80%;
-    background-color: #FFFFFF;
-    gap: 24px;
-}
-
-.logo {
-    color: #24483D;
-    font-size: 26px;
     font-weight: bold;
     text-decoration: none;
-    white-space: nowrap;
 }
 
-.menu {
-    display: flex;
-    align-items: center;
+.halaman-katalog {
+    background-color: #f7f3ea;
+    padding: 60px 8%;
+    min-height: 500px;
+}
+
+.judul-katalog {
+    margin-bottom: 35px;
+}
+
+.judul-katalog h1 {
+    color: #24483d;
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.judul-katalog > p:last-child {
+    color: #555b57;
+    line-height: 1.7;
+}
+
+.grid-produk {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
+    align-items: stretch;
 }
 
-.menu a {
-    color: #292d2b;
+.kartu-produk {
+    background-color: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.gambar-produk {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+}
+
+.gambar-homestay {
+    background-color: #ffffff;
+}
+
+.isi-produk {
+    padding: 20px;
+}
+
+.isi-produk h2 {
+    color: #24483d;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.isi-produk p {
+    color: #555b57;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.isi-produk h3 {
+    color: #c8795d;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.tombol-detail {
+    display: inline-block;
+    background-color: #24483d;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 7px;
     text-decoration: none;
+    font-weight: bold;
     font-size: 14px;
 }
 
-.menu a, .menu a.aktif {
-    color: #c8795d;
-}
-
-.tombol-login {
-    background-color: #24483D;
-    color: #FFFFFF;
-    padding: 11px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.tombol-login {
+.tombol-detail:hover {
     background-color: #c8795d;
 }
 
+/* ==============================
+   8. FOOTER
+============================== */
+
 .footer {
-    background-color: #24483D;
+    background-color: #24483d;
     color: #f7f3ea;
     padding: 45px 8% 20px;
 }
@@ -225,13 +304,12 @@ h2 {
 }
 
 .footer-navigasi a {
-    color: #f7f3ea;
+    color: #c8795d;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
-.footer-navigasi a {
-    color: #c8795d;
+.footer-navigasi a:hover {
+    color: white;
 }
 
 .footer-bawah {
@@ -243,4 +321,152 @@ h2 {
 .footer-bawah p {
     font-size: 13px;
     margin: 0;
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 18px 5%;
+        flex-wrap: wrap;
+    }
+
+    .menu {
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .grid-produk {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .halaman-katalog {
+        padding: 40px 6%;
+    }
+
+    .judul-katalog h1 {
+        font-size: 28px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+}
+
+.detail-homestay {
+    max-width: 1000px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.gambar-detail {
+    background-color: #e9e2d3;
+    min-height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    border-radius: 12px;
+}
+
+.isi-detail h2 {
+    color: #24483D;
+    margin-bottom: 15px;
+}
+
+.isi-detail p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.isi-detail ul {
+    padding-left: 20px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .detail-homestay {
+        grid-template-columns: 1fr;
+        margin: 20px;
+    }
+}
+
+.form-booking {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.form-booking h2 {
+    color: #24483D;
+    margin-bottom: 10px;
+}
+
+.form-booking form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.form-booking label {
+    font-weight: bold;
+    color: #292d2b;
+}
+
+.form-booking input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.form-booking button {
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.total-harga {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f7f3ea;
+    border-radius: 8px;
+}
+
+.total-harga h3 {
+    color: #24483D;
+    margin-top: 10px;
 }

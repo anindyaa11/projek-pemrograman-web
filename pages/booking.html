@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Homestay - JogjaYuk!</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../index.html">Beranda</a>
+        <nav class="menu">
+            <a href="../index.html"></a>
+            <a href="homestay.html"></a>
+            <a href="paketWisata.html"></a>
+            <a href="rental.html"></a>
+        </nav>
+
+        <a href="#" class="tombol-login">Login</a>
+    </header>
+    
+    <main class="halaman-katalog">
+        <div class="judul-katalog">
+            <p class="slogan">Pesan Penginapanmu</p>
+            <h1>Booking Homestay</h1>
+            <p>Lengkapi data berikut untuk melakukan pemesanan.</p>
+        </div>
+
+        <section class="form-booking">
+            <h2>Homestay Prawirotaman</h2>
+            <p>Rp 275.0000</p>
+            <form action="#" method="POST">
+                <label>Nama Pemesan</label>
+                <input type="text" name="nama" placeholder="Masukkan nama lengkap" required>
+
+                <label>Tanggal Check-in</label>
+                <input type="date" id="checkin" name="checkin" required>
+
+                <label>Tanggal Check-out</label>
+                <input type="date" id="checkout" name="checkout" required>
+
+                <label>Jumlah Tamu</label>
+                <input type="number" name="jumlah_tamu" min="1" value="1" required>
+
+                <div class="total-harga">
+                    <p>Jumlah Malam: <span id="jumlah-malam">0</span></p>
+                    <h3>Total Harga: Rp <span id="total-harga">0</span></h3>
+                </div>
+
+                <button type="submit" class="tombol-detail">
+                    Lanjutkan Booking
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-identitas">
+                <h2>JogjaYuk!</h2>
+                <p>Liburan ke Jogja, Tinggal Klik Aja.</p>
+                <p>Temukan pengalaman terbaik untuk perjalananmu di Yogyakarta.</p>
+            </div>
+
+            <div class="footer-navigasi">
+                <h3>Navigasi</h3>
+                <a href="../index.html">Beranda</a>
+                <a href="homestay.html">Homestay</a>
+                <a href="paketWisata.html">Paket Wisata</a>
+                <a href="rental.html">Rental Kendaraan</a>
+            </div>
+        </div>
+
+        <div class="footer-bawah">
+            <p>&copy; 2026 JogjaYuk! Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        const checkin = document.getElementById("checkin");
+        const checkout = document.getElementById("checkout");
+
+        const hargaPerMalam = 275000;
+
+        function hitungHarga() {
+            const tanggalMasuk = new Date(checkin.value);
+            const tanggalKeluar = new Date(checkout.value);
+
+            if (!checkin.value || !checkout.value) {
+            document.getElementById("jumlah-malam").textContent = 0;
+            document.getElementById("total-harga").textContent = 0;
+            return;
+        }
+
+        const selisih = tanggalKeluar - tanggalMasuk;
+        const malam = selisih / (1000 * 60 * 60 * 24);
+
+        if (malam <= 0) {
+            document.getElementById("jumlah-malam").textContent = 0;
+            document.getElementById("total-harga").textContent = 0;
+            alert("Tanggal check-out harus setelah check-in!");
+            return;
+        }
+
+        const total = malam * hargaPerMalam;
+
+        document.getElementById("jumlah-malam").textContent = malam;
+        document.getElementById("total-harga").textContent =
+            total.toLocaleString("id-ID");
+    }
+
+    checkin.addEventListener("change", hitungHarga);
+    checkout.addEventListener("change", hitungHarga);
+    </script>
+</body>
+</html>

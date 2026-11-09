@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +11,26 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header class="navbar">
-        <a href="#" class="logo">JogjaYuk!</a>
+    
+<header class="navbar">
+    <a href="index.php" class="logo">JogjaYuk!</a>
 
-        <nav class="menu">
-            <a href="index.html" class="aktif">Beranda</a>
-            <a href="#layanan">Homestay</a>
-            <a href="#layanan">Paket Wisata</a>
-            <a href="#layanan">Rental</a>
-        </nav>
-        <a href="#" class="tombol-login">Login</a>
-    </header>
+    <nav class="menu">
+        <a href="index.php" class="aktif">Beranda</a>
+        <a href="pages/homestay.php">Homestay</a>
+        <a href="pages/paketWisata.html">Paket Wisata</a>
+        <a href="pages/rental.html">Rental</a>
+    </nav>
+
+    <?php if (isset($_SESSION["user_id"])): ?>
+        <div class="menu-akun">
+            <span>Halo, <?php echo htmlspecialchars($_SESSION["nama"]); ?>!</span>
+            <a href="pages/logout.php" class="tombol-login">Logout</a>
+        </div>
+    <?php else: ?>
+        <a href="pages/login.php" class="tombol-login">Login</a>
+    <?php endif; ?>
+</header>
 
     <main class="hero">
     <p class="slogan">Liburan ke Jogja, Tinggal Klik Aja</p>
@@ -35,21 +48,21 @@
                 <div class="ikon-layanan">🏡</div>
                 <h3>Homestay</h3>
                 <p>Temukan penginapan nyaman untuk menemani liburanmu.</p>
-                <a href="#" class="link-layanan">Lihat Homestay-></a>
+                <a href="pages/homestay.php" class="link-layanan">Lihat Homestay-></a>
             </div>
             
             <div class="kartu-layanan">
                 <div class="ikon-layanan">🏞️</div>
                 <h3>Paket Wisata</h3>
                 <p>Jelajahi destinasi menarik dan pengalaman seru di Jogja.</p>
-                <a href="#" class="link-layanan">Lihat Paket Wisata-></a>
+                <a href="pages/paketWisata.html" class="link-layanan">Lihat Paket Wisata-></a>
             </div>
 
             <div class="kartu-layanan">
                 <div class="ikon-layanan">🚗</div>
                 <h3>Rental Kendaraan</h3>
                 <p>Pilih kendaraan untuk perjalananmu menjelajahi Jogja.</p>
-                <a href="#" class="link-layanan">Lihat Kendaraan-></a>
+                <a href="pages/rental.html" class="link-layanan">Lihat Kendaraan-></a>
             </div>
 
         </div>
@@ -65,11 +78,10 @@
             </div>
             <div class="footer-navigasi">
                 <h3>Navigasi</h3>
-                <a href="index.html">Beranda</a>
-                <a href="#layanan">Layanan Kami</a>
-                <a href="#layanan">Homestay</a>
-                <a href="#layanan">Paket Wisata</a>
-                <a href="#layanan">Rental Kendaraan</a>
+                <a href="index.php">Beranda</a>
+                <a href="pages/homestay.html">Homestay</a>
+                <a href="pages/paketWisata.html">Paket Wisata</a>
+                <a href="pages/rental.html">Rental Kendaraan</a>
             </div>
         </div>
 
