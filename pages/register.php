@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($hasilCek) > 0) {
             $pesan = "Email sudah terdaftar!";
         } else {
-            // Mengamankan password dengan hash
+            
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
             $query = "INSERT INTO users (nama, email, password)
@@ -53,29 +53,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - JogjaYuk!</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
+</head>  
+<body class="halaman-login">
 
-    <h1>Daftar Akun JogjaYuk!</h1>
+    <div class="login-container">
 
-    <?php if (!empty($pesan)): ?>
-        <p><?php echo htmlspecialchars($pesan); ?></p>
-    <?php endif; ?>
+        <div class="login-header">
+            <h1>JogjaYuk!</h1>
+            <p>Liburan ke Jogja, Tinggal Klik Aja.</p>
+        </div>
 
-    <form method="POST" action="">
-        <label>Nama</label>
-        <input type="text" name="nama" required>
+        <div class="login-card">
 
-        <label>Email</label>
-        <input type="email" name="email" required>
+            <h2>Daftar Akun</h2>
+            <p class="login-deskripsi">
+                Buat akun untuk memulai perjalananmu!
+            </p>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+            <?php if (!empty($pesan)): ?>
+                <p class="pesan-error">
+                    <?php echo htmlspecialchars($pesan); ?>
+                </p>
+            <?php endif; ?>
 
-        <button type="submit">Daftar</button>
-    </form>
+            <form method="POST" action="">
 
-    <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
+                <div class="form-login">
+                    <label>Nama</label>
+                    <input type="text" name="nama"
+                        placeholder="Masukkan nama kamu" required>
+                </div>
+
+                <div class="form-login">
+                    <label>Email</label>
+                    <input type="email" name="email"
+                        placeholder="Masukkan email kamu" required>
+                </div>
+
+                <div class="form-login">
+                    <label>Password</label>
+                    <input type="password" name="password"
+                        placeholder="Buat password" required>
+                </div>
+
+                <button type="submit" class="tombol-login">
+                    Daftar
+                </button>
+
+            </form>
+
+            <p class="daftar-login">
+                Sudah punya akun?
+                <a href="login.php">Login di sini</a>
+            </p>
+
+            <a href="../index.php" class="kembali-beranda">
+                ← Kembali ke Beranda
+            </a>
+
+        </div>
+    </div>
 
 </body>
 </html>

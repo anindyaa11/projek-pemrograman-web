@@ -1,4 +1,3 @@
-
 <?php
 include "../config/koneksi.php";
 $query = "SELECT * FROM homestay WHERE status = 'tersedia' ORDER BY id ASC";

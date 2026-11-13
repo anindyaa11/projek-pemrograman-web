@@ -38,25 +38,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login - JogjaYuk!</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
 
-    <h1>Login JogjaYuk!</h1>
+<body class="halaman-login">
 
-    <?php if (!empty($pesan)): ?>
-        <p><?php echo htmlspecialchars($pesan); ?></p>
-    <?php endif; ?>
+    <div class="login-container">
 
-    <form method="POST" action="">
-        <label>Email</label>
-        <input type="email" name="email" required>
+        <div class="login-header">
+            <h1>JogjaYuk!</h1>
+            <p>Liburan ke Jogja, Tinggal Klik Aja.</p>
+        </div>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+        <div class="login-card">
 
-        <button type="submit">Login</button>
-    </form>
+            <h2>Selamat Datang!</h2>
+            <p class="login-deskripsi">
+                Masuk ke akunmu untuk melanjutkan perjalanan.
+            </p>
 
-    <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+            <?php if (!empty($pesan)): ?>
+                <p class="pesan-error">
+                    <?php echo htmlspecialchars($pesan); ?>
+                </p>
+            <?php endif; ?>
+
+            <form method="POST" action="">
+
+                <div class="form-login">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Masukkan email kamu"
+                        required
+                    >
+                </div>
+
+                <div class="form-login">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Masukkan password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="tombol-login">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="daftar-login">
+                Belum punya akun?
+                <a href="register.php">Daftar di sini</a>
+            </p>
+
+            <a href="../index.php" class="kembali-beranda">
+                ← Kembali ke Beranda
+            </a>
+
+        </div>
+    </div>
 
 </body>
 </html>

@@ -9,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JogjaYuk!- Liburan ke Jogja, Tinggal Klik Aja</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     
@@ -45,24 +46,36 @@ session_start();
 
         <div class="container-layanan">
             <div class="kartu-layanan">
-                <div class="ikon-layanan">🏡</div>
+                <div class="ikon-layanan">
+                    <i class="bi bi-house-door"></i>
+                </div>
                 <h3>Homestay</h3>
                 <p>Temukan penginapan nyaman untuk menemani liburanmu.</p>
-                <a href="pages/homestay.php" class="link-layanan">Lihat Homestay-></a>
+                <a href="pages/homestay.php" class="link-layanan">Lihat Homestay
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
             
             <div class="kartu-layanan">
-                <div class="ikon-layanan">🏞️</div>
+                <div class="ikon-layanan">
+                    <i class="bi bi-map"></i>
+                </div>
                 <h3>Paket Wisata</h3>
                 <p>Jelajahi destinasi menarik dan pengalaman seru di Jogja.</p>
-                <a href="pages/paketWisata.html" class="link-layanan">Lihat Paket Wisata-></a>
+                <a href="pages/paketWisata.html" class="link-layanan">Lihat Paket Wisata
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
 
             <div class="kartu-layanan">
-                <div class="ikon-layanan">🚗</div>
+                <div class="ikon-layanan">
+                    <i class="bi bi-car-front"></i>
+                </div>
                 <h3>Rental Kendaraan</h3>
                 <p>Pilih kendaraan untuk perjalananmu menjelajahi Jogja.</p>
-                <a href="pages/rental.html" class="link-layanan">Lihat Kendaraan-></a>
+                <a href="pages/rental.html" class="link-layanan">Lihat Kendaraan
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
 
         </div>

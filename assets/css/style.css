@@ -470,3 +470,296 @@ h2 {
     color: #24483D;
     margin-top: 10px;
 }
+
+.ikon-layanan {
+    font-size: 30px;
+    color: #24483D;
+    margin-bottom: 18px;
+}
+
+.link-layanan {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #C8795D;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.link-layanan i {
+    transition: transform 0.3s ease;
+}
+
+.link-layanan:hover {
+    color: #24483D;
+}
+
+.link-layanan:hover i {
+    transform: translateX(5px);
+}
+
+.kartu-layanan {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kartu-layanan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(36, 72, 61, 0.12);
+}
+
+body.halaman-login {
+    margin: 0;
+    min-height: 100vh;
+    padding: 30px 15px;
+    background-color: #f7f3ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.halaman-login .login-container {
+    width: 100%;
+    max-width: 430px;
+    margin: auto;
+}
+
+.halaman-login .login-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.halaman-login .login-header h1 {
+    color: #24483d;
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.halaman-login .login-header p {
+    color: #c8795d;
+    margin: 0;
+}
+
+.halaman-login .login-card {
+    width: 100%;
+    padding: 35px;
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(36, 72, 61, 0.12);
+    box-sizing: border-box;
+}
+
+.halaman-login .login-card h2 {
+    color: #24483d;
+    text-align: center;
+    margin-top: 0;
+}
+
+.halaman-login .login-deskripsi {
+    color: #777;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.halaman-login .form-login {
+    margin-bottom: 18px;
+}
+
+.halaman-login .form-login label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.halaman-login .form-login input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.halaman-login .form-login input:focus {
+    outline: none;
+    border-color: #24483d;
+}
+
+.halaman-login .tombol-login {
+    width: 100%;
+    padding: 13px;
+    background-color: #24483d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.halaman-login .tombol-login:hover {
+    background-color: #19372e;
+}
+
+.halaman-login .pesan-error {
+    padding: 12px;
+    background-color: #fbe9e3;
+    color: #a54e36;
+    border-radius: 8px;
+}
+
+.halaman-login .daftar-login {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 14px;
+}
+
+.halaman-login .daftar-login a {
+    color: #c8795d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.halaman-login .kembali-beranda {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #24483d;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.grid-homestay,
+.container-homestay {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.kartu-homestay {
+    overflow: hidden;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.kartu-homestay img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.kartu-homestay .isi-kartu {
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid-homestay,
+    .container-homestay {
+        grid-template-columns: 1fr;
+    }
+}
+
+.gambar-homestay {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.gambar-homestay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.kartu-produk {
+    overflow: hidden;
+}
+
+.kartu-produk .gambar-produk {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    object-position: center;
+    background-color: #f7f3ea;
+}
+
+.kartu-produk .gambar-homestay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee8dc;
+    font-size: 60px;
+}
+
+.foto-detail-homestay {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+
+.kartu-produk {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.foto-detail-homestay {
+    width: 80%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+}
+
+.kartu-produk .isi-produk {
+    padding: 20px;
+}
+
+.kartu-produk .isi-produk h2 {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    color: #24483D;
+}
+
+.kartu-produk .isi-produk p {
+    line-height: 1.6;
+}
+
+
+.kartu-produk form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.kartu-produk form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    max-width: 100%;
+}
+
+.kartu-produk form input[type="text"],
+.kartu-produk form input[type="date"],
+.kartu-produk form input[type="number"] {
+    width: 280px;
+    box-sizing: border-box;
+}
+
+.kartu-produk form button {
+    margin-top: 10px;
+    cursor: pointer;
+}

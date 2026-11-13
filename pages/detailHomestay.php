@@ -1,10 +1,10 @@
 <?php
 include "../config/koneksi.php";
 
-// Mengambil ID homestay dari URL
+
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
-// Mengambil data homestay
+
 $query = "SELECT * FROM homestay WHERE id = ?";
 $stmt = mysqli_prepare($koneksi, $query);
 mysqli_stmt_bind_param($stmt, "i", $id);
@@ -16,7 +16,7 @@ $homestay = mysqli_fetch_assoc($result);
 $pesan = "";
 $berhasil = false;
 
-// Proses booking ketika form dikirim
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $homestay) {
 
     $nama = trim($_POST['nama_pemesan']);
@@ -109,6 +109,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $homestay) {
         </div>
 
         <article class="kartu-produk">
+           <?php if (!empty($homestay['gambar'])): ?>
+            <img src="../assets/images/<?php echo $homestay['gambar']; ?>" alt="Foto Homestay" class="foto-detail-homestay">
+            <?php endif; ?>
+            
             <div class="isi-produk">
 
                 <h2>Deskripsi Homestay</h2>
