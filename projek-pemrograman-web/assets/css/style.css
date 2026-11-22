@@ -1,0 +1,964 @@
+/* =========================================================
+   JogjaYuk! - style.css
+   Palet SAMA: hijau #24483d | terakota #c8795d | krem #f7f3ea
+   ========================================================= */
+
+:root {
+    --hijau: #24483d;
+    --hijau-gelap: #19372e;
+    --terakota: #c8795d;
+    --terakota-gelap: #b0654a;
+    --krem: #f7f3ea;
+    --krem-gelap: #eee8dc;
+    --teks: #292d2b;
+    --teks-redup: #555b57;
+    --putih: #ffffff;
+    --garis: #e4ddcf;
+    --bayangan: 0 4px 16px rgba(36, 72, 61, 0.08);
+    --bayangan-besar: 0 10px 28px rgba(36, 72, 61, 0.16);
+    --radius: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    background-color: var(--krem);
+    color: var(--teks);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ==============================
+   NAVBAR
+============================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 8%;
+    background-color: var(--putih);
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 14px rgba(36, 72, 61, 0.08);
+}
+
+.logo {
+    color: var(--hijau);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.menu a {
+    color: var(--terakota);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+.menu a:hover,
+.menu a.aktif {
+    color: var(--hijau);
+    background-color: var(--krem);
+}
+
+.menu-akun {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--hijau);
+    font-weight: 600;
+}
+
+.tombol-login {
+    background-color: var(--terakota);
+    color: white;
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tombol-login:hover {
+    background-color: var(--hijau);
+    transform: translateY(-1px);
+}
+
+/* ==============================
+   HERO
+============================== */
+
+.hero {
+    padding: 100px 8%;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(135deg, var(--krem) 0%, #efe6d3 100%);
+}
+
+.slogan {
+    color: var(--terakota);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+}
+
+h1 {
+    color: var(--hijau);
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 50px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    max-width: 750px;
+    margin: 0 0 20px;
+}
+
+.hero .deskripsi {
+    color: var(--teks-redup);
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: 0 0 30px;
+}
+
+.deskripsi {
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 650px;
+    margin-bottom: 30px;
+}
+
+.tombol {
+    display: inline-block;
+    background-color: var(--terakota);
+    color: white;
+    padding: 15px 28px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 6px 16px rgba(200, 121, 93, 0.35);
+}
+
+.tombol:hover {
+    background-color: var(--hijau);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(36, 72, 61, 0.3);
+}
+
+/* ==============================
+   LAYANAN (BERANDA)
+============================== */
+
+#layanan {
+    padding: 40px 8% 70px;
+    background-color: white;
+}
+
+h2 {
+    color: var(--hijau);
+    font-size: 30px;
+    margin-top: 45px;
+}
+
+.intro-layanan {
+    margin-bottom: 30px;
+    line-height: 1.7;
+    color: var(--teks-redup);
+}
+
+.container-layanan {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.kartu-layanan {
+    background-color: var(--krem);
+    padding: 30px;
+    border-radius: var(--radius);
+    flex: 1;
+    min-width: 220px;
+    border: 1px solid var(--garis);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kartu-layanan:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--bayangan-besar);
+}
+
+.ikon-layanan {
+    font-size: 32px;
+    color: var(--hijau);
+    margin-bottom: 18px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: var(--bayangan);
+}
+
+.kartu-layanan h3 {
+    color: var(--hijau);
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.kartu-layanan p {
+    color: var(--teks-redup);
+    line-height: 1.7;
+}
+
+.link-layanan {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    color: var(--terakota);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.link-layanan i {
+    transition: transform 0.3s ease;
+}
+
+.link-layanan:hover {
+    color: var(--hijau);
+}
+
+.link-layanan:hover i {
+    transform: translateX(5px);
+}
+
+/* ==============================
+   KATALOG
+============================== */
+
+.halaman-katalog {
+    background-color: var(--krem);
+    padding: 60px 8%;
+    min-height: 500px;
+}
+
+.judul-katalog {
+    margin-bottom: 35px;
+}
+
+.judul-katalog h1 {
+    color: var(--hijau);
+    font-size: 36px;
+    margin: 10px 0;
+    letter-spacing: -0.5px;
+}
+
+.judul-katalog > p:last-child {
+    color: var(--teks-redup);
+    line-height: 1.7;
+}
+
+.halaman-katalog > h2 {
+    margin: 40px 0 20px;
+    padding-left: 14px;
+    border-left: 5px solid var(--terakota);
+    font-size: 24px;
+}
+
+.grid-produk {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.kartu-produk {
+    background-color: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--bayangan);
+    border: 1px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.grid-produk .kartu-produk:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--bayangan-besar);
+    border-color: var(--garis);
+}
+
+.gambar-produk {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+}
+
+.gambar-homestay {
+    background-color: #ffffff;
+}
+
+.isi-produk {
+    padding: 22px;
+}
+
+.isi-produk h2 {
+    color: var(--hijau);
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.isi-produk p {
+    color: var(--teks-redup);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.isi-produk h3 {
+    color: var(--terakota);
+    font-size: 19px;
+    margin-top: 20px;
+}
+
+.isi-produk hr {
+    border: none;
+    border-top: 1px solid var(--garis);
+    margin: 28px 0;
+}
+
+/* Tombol */
+.tombol-detail {
+    display: inline-block;
+    background-color: var(--hijau);
+    color: white;
+    padding: 11px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.2;
+    border: none;
+    cursor: pointer;
+}
+
+.tombol-detail:hover {
+    background-color: var(--terakota);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(200, 121, 93, 0.3);
+}
+
+button.tombol-detail {
+    font-size: 14px;
+}
+
+/* ==============================
+   FORM (filter, booking, profil)
+============================== */
+
+.form-booking {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 32px;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--bayangan);
+}
+
+.form-booking h2 {
+    color: var(--hijau);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.form-booking form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.form-booking label {
+    font-weight: 600;
+    color: var(--teks);
+    font-size: 14px;
+}
+
+.form-booking input {
+    padding: 12px;
+    border: 1px solid #d6cfc0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-booking button {
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.kartu-produk form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--hijau);
+}
+
+.kartu-produk form input,
+.kartu-produk form select {
+    padding: 11px 12px;
+    border: 1px solid #d6cfc0;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    max-width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--teks);
+    background-color: white;
+}
+
+.kartu-produk form input[type="text"],
+.kartu-produk form input[type="date"],
+.kartu-produk form input[type="number"],
+.kartu-produk form select {
+    width: 100%;
+    max-width: 420px;
+}
+
+.kartu-produk form input:focus,
+.kartu-produk form select:focus,
+.form-booking input:focus {
+    outline: none;
+    border-color: var(--hijau);
+    box-shadow: 0 0 0 3px rgba(36, 72, 61, 0.12);
+}
+
+.kartu-produk form button {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.kartu-produk form br {
+    display: none;
+}
+
+/* Kotak total harga & notifikasi */
+.total-harga {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background-color: var(--krem);
+    border-left: 5px solid var(--terakota);
+    border-radius: 8px;
+}
+
+.total-harga p {
+    margin: 0;
+    color: var(--teks);
+}
+
+.total-harga h3 {
+    color: var(--hijau);
+    margin: 8px 0 0;
+}
+
+/* ==============================
+   DETAIL
+============================== */
+
+.detail-homestay {
+    max-width: 1000px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.gambar-detail {
+    background-color: #e9e2d3;
+    min-height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    border-radius: 12px;
+}
+
+.isi-detail h2 {
+    color: var(--hijau);
+    margin-bottom: 15px;
+}
+
+.isi-detail p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.isi-detail ul {
+    padding-left: 20px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+.foto-detail-homestay {
+    width: 80%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+}
+
+/* ==============================
+   GAMBAR KARTU
+============================== */
+
+.kartu-homestay {
+    overflow: hidden;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: var(--bayangan);
+}
+
+.kartu-homestay img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.kartu-homestay .isi-kartu {
+    padding: 20px;
+}
+
+.grid-homestay,
+.container-homestay {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.gambar-homestay {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.gambar-homestay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.kartu-produk .gambar-produk {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    object-position: center;
+    background-color: var(--krem);
+}
+
+.kartu-produk .gambar-homestay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--krem-gelap);
+    font-size: 60px;
+}
+
+/* Emoji pengganti foto: tengah & rapi */
+.kartu-produk div.gambar-produk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 72px;
+    background-color: var(--krem-gelap);
+}
+
+/* ==============================
+   LOGIN & REGISTER
+============================== */
+
+body.halaman-login {
+    margin: 0;
+    min-height: 100vh;
+    padding: 30px 15px;
+    background: linear-gradient(135deg, var(--krem) 0%, #efe6d3 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.halaman-login .login-container {
+    width: 100%;
+    max-width: 430px;
+    margin: auto;
+}
+
+.halaman-login .login-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.halaman-login .login-header h1 {
+    color: var(--hijau);
+    font-size: 38px;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+}
+
+.halaman-login .login-header p {
+    color: var(--terakota);
+    margin: 0;
+    font-weight: 600;
+}
+
+.halaman-login .login-card {
+    width: 100%;
+    padding: 36px;
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: var(--bayangan-besar);
+}
+
+.halaman-login .login-card h2 {
+    color: var(--hijau);
+    text-align: center;
+    margin-top: 0;
+}
+
+.halaman-login .login-deskripsi {
+    color: #777;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.halaman-login .form-login {
+    margin-bottom: 18px;
+}
+
+.halaman-login .form-login label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.halaman-login .form-login input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.halaman-login .form-login input:focus {
+    outline: none;
+    border-color: var(--hijau);
+    box-shadow: 0 0 0 3px rgba(36, 72, 61, 0.12);
+}
+
+.halaman-login .tombol-login {
+    width: 100%;
+    padding: 13px;
+    background-color: var(--hijau);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.halaman-login .tombol-login:hover {
+    background-color: var(--hijau-gelap);
+}
+
+.halaman-login .pesan-error {
+    padding: 12px;
+    background-color: #fbe9e3;
+    color: #a54e36;
+    border-radius: 8px;
+}
+
+.halaman-login .daftar-login {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 14px;
+}
+
+.halaman-login .daftar-login a {
+    color: var(--terakota);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.halaman-login .kembali-beranda {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--hijau);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+.footer {
+    background-color: var(--hijau);
+    color: var(--krem);
+    padding: 50px 8% 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+
+.footer-identitas {
+    max-width: 400px;
+}
+
+.footer-identitas h2 {
+    color: var(--krem);
+    font-size: 26px;
+    margin: 0 0 12px;
+}
+
+.footer-identitas p {
+    color: var(--krem);
+    line-height: 1.7;
+}
+
+.footer-navigasi {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-navigasi h3 {
+    color: var(--krem);
+    margin: 0 0 8px;
+}
+
+.footer-navigasi a {
+    color: #e3a48c;
+    text-decoration: none;
+}
+
+.footer-navigasi a:hover {
+    color: white;
+    transform: translateX(4px);
+}
+
+.footer-bawah {
+    border-top: 1px solid rgba(247, 243, 234, 0.25);
+    padding-top: 15px;
+    text-align: center;
+}
+
+.footer-bawah p {
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ==============================
+   RESPONSIF
+============================== */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 14px 5%;
+        flex-wrap: wrap;
+        position: static;
+    }
+
+    .menu {
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .grid-produk,
+    .grid-homestay,
+    .container-homestay {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-homestay {
+        grid-template-columns: 1fr;
+        margin: 20px;
+    }
+}
+
+@media (max-width: 550px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .menu {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .halaman-katalog {
+        padding: 40px 6%;
+    }
+
+    .judul-katalog h1 {
+        font-size: 28px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .form-booking {
+        padding: 22px;
+    }
+}
+
+/* ==============================
+   KATEGORI (chip ala Traveloka)
+============================== */
+
+.kategori-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.chip-kategori {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background-color: white;
+    color: var(--hijau);
+    border: 1px solid var(--garis);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--bayangan);
+}
+
+.chip-kategori span {
+    background-color: var(--krem);
+    color: var(--terakota);
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.chip-kategori:hover {
+    border-color: var(--terakota);
+    color: var(--terakota);
+    transform: translateY(-2px);
+}
+
+.chip-kategori.aktif {
+    background-color: var(--hijau);
+    color: white;
+    border-color: var(--hijau);
+}
+
+.chip-kategori.aktif span {
+    background-color: var(--terakota);
+    color: white;
+}
+
+.badge-kategori {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 12px;
+    background-color: var(--krem);
+    color: var(--hijau);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Pesan sukses (login/register) */
+.halaman-login .pesan-sukses {
+    padding: 12px;
+    background-color: #e6f1ec;
+    color: var(--hijau);
+    border-radius: 8px;
+}
