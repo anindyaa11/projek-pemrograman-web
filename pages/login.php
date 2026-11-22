@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 include "../config/koneksi.php";
 include "../config/helper.php";
@@ -9,7 +12,11 @@ $sukses = "";
 $tujuan = urlAman($_GET['redirect'] ?? '', '');
 
 if (isset($_SESSION["user_id"])) {
-    header("Location: " . ($tujuan !== '' ? $tujuan : "../index.php"));
+    if ($_SESSION["role"] === "admin") {
+        header("Location: ../admin/index.php");
+    } else {
+        header("Location: " . ($tujuan !== '' ? $tujuan : "../index.php"));
+    }
     exit;
 }
 
@@ -33,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hasil = mysqli_stmt_get_result($stmt);
     $user = mysqli_fetch_assoc($hasil);
+   
 
     if ($user && password_verify($password, $user["password"])) {
         session_regenerate_id(true);
@@ -40,7 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["nama"] = $user["nama"];
         $_SESSION["role"] = $user["role"];
 
-        header("Location: " . ($tujuan !== '' ? $tujuan : "../index.php"));
+        if ($_SESSION["role"] === "admin") {
+            header("Location: ../admin/index.php");
+        } else {
+            header("Location: " . ($tujuan !== '' ? $tujuan : "../index.php"));
+        }
         exit;
     } elseif (!$user) {
         $pesan = "Email belum terdaftar. Silakan daftar akun terlebih dahulu.";
@@ -49,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -76,7 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </p>
 
             <?php if (!empty($sukses)): ?>
-                <p class="pesan-sukses"><?php echo htmlspecialchars($sukses); ?></p>
+                <p class="pesan-sukses">
+                    <?php echo htmlspecialchars($sukses); ?>
+                </p>
             <?php endif; ?>
 
             <?php if (!empty($pesan)): ?>
@@ -89,22 +104,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-login">
                     <label>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Masukkan email kamu"
-                        required
-                    >
+                    <input type="email" name="email"
+                        placeholder="Masukkan email kamu" required>
                 </div>
 
                 <div class="form-login">
                     <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Masukkan password"
-                        required
-                    >
+                    <input type="password" name="password"
+                        placeholder="Masukkan password" required>
                 </div>
 
                 <button type="submit" class="tombol-login">
