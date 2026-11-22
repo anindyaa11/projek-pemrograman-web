@@ -1,17 +1,29 @@
 <?php
 include "../config/koneksi.php";
+include "../config/helper.php";
+
+if (sudahLogin()) {
+    header("Location: ../index.php");
+    exit;
+}
 
 $pesan = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = trim($_POST["nama"]);
-    $email = trim($_POST["email"]);
+    $email = strtolower(trim($_POST["email"]));
     $password = $_POST["password"];
 
     if (empty($nama) || empty($email) || empty($password)) {
         $pesan = "Semua kolom wajib diisi!";
+    } elseif (mb_strlen($nama) > 100) {
+        $pesan = "Nama maksimal 100 karakter.";
+    } elseif (($err = validasiEmailGmail($email)) !== "") {
+        $pesan = $err;
+    } elseif (($err = validasiPassword($password)) !== "") {
+        $pesan = $err;
     } else {
-    
+
         $queryCek = "SELECT id FROM users WHERE email = ?";
         $stmtCek = mysqli_prepare($koneksi, $queryCek);
         mysqli_stmt_bind_param($stmtCek, "s", $email);
@@ -21,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($hasilCek) > 0) {
             $pesan = "Email sudah terdaftar!";
         } else {
-            
+
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
             $query = "INSERT INTO users (nama, email, password)
@@ -37,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             );
 
             if (mysqli_stmt_execute($stmt)) {
-                $pesan = "Pendaftaran berhasil! Silakan login.";
+                header("Location: login.php?daftar=1");
+                exit;
             } else {
                 $pesan = "Pendaftaran gagal. Silakan coba lagi.";
             }
@@ -80,20 +93,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-login">
                     <label>Nama</label>
-                    <input type="text" name="nama"
+                    <input type="text" name="nama" maxlength="100"
                         placeholder="Masukkan nama kamu" required>
                 </div>
 
                 <div class="form-login">
                     <label>Email</label>
-                    <input type="email" name="email"
-                        placeholder="Masukkan email kamu" required>
+                    <input type="email" name="email" maxlength="100"
+                        pattern="[A-Za-z0-9._%+\-]+@[Gg][Mm][Aa][Ii][Ll]\.[Cc][Oo][Mm]"
+                        title="Gunakan email @gmail.com, contoh: nama@gmail.com"
+                        placeholder="contoh: nama@gmail.com" required>
                 </div>
 
                 <div class="form-login">
                     <label>Password</label>
-                    <input type="password" name="password"
-                        placeholder="Buat password" required>
+                    <input type="password" name="password" minlength="8"
+                        pattern="(?=.*[^A-Za-z0-9\s]).{8,}"
+                        title="Minimal 8 karakter dan mengandung minimal 1 simbol (! @ # $ % &amp; *)"
+                        placeholder="Min. 8 karakter + 1 simbol (contoh: Jogja@2026)" required>
                 </div>
 
                 <button type="submit" class="tombol-login">

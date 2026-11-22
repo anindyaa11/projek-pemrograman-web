@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: pages/login.php?wajib=1");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,13 +24,14 @@ session_start();
     <nav class="menu">
         <a href="index.php" class="aktif">Beranda</a>
         <a href="pages/homestay.php">Homestay</a>
-        <a href="pages/paketWisata.html">Paket Wisata</a>
-        <a href="pages/rental.html">Rental</a>
+        <a href="pages/paketWisata.php">Paket Wisata</a>
+        <a href="pages/rental.php">Rental</a>
+        <a href="pages/riwayatBooking.php">Riwayat Booking</a>
     </nav>
 
     <?php if (isset($_SESSION["user_id"])): ?>
         <div class="menu-akun">
-            <span>Halo, <?php echo htmlspecialchars($_SESSION["nama"]); ?>!</span>
+            <span>Halo, <a href="pages/profil.php" title="Profil Saya" style="color:inherit;text-decoration:none"><?php echo htmlspecialchars($_SESSION["nama"]); ?></a>!</span>
             <a href="pages/logout.php" class="tombol-login">Logout</a>
         </div>
     <?php else: ?>
@@ -62,7 +68,7 @@ session_start();
                 </div>
                 <h3>Paket Wisata</h3>
                 <p>Jelajahi destinasi menarik dan pengalaman seru di Jogja.</p>
-                <a href="pages/paketWisata.html" class="link-layanan">Lihat Paket Wisata
+                <a href="pages/paketWisata.php" class="link-layanan">Lihat Paket Wisata
                     <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -73,7 +79,7 @@ session_start();
                 </div>
                 <h3>Rental Kendaraan</h3>
                 <p>Pilih kendaraan untuk perjalananmu menjelajahi Jogja.</p>
-                <a href="pages/rental.html" class="link-layanan">Lihat Kendaraan
+                <a href="pages/rental.php" class="link-layanan">Lihat Kendaraan
                     <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -92,9 +98,9 @@ session_start();
             <div class="footer-navigasi">
                 <h3>Navigasi</h3>
                 <a href="index.php">Beranda</a>
-                <a href="pages/homestay.html">Homestay</a>
-                <a href="pages/paketWisata.html">Paket Wisata</a>
-                <a href="pages/rental.html">Rental Kendaraan</a>
+                <a href="pages/homestay.php">Homestay</a>
+                <a href="pages/paketWisata.php">Paket Wisata</a>
+                <a href="pages/rental.php">Rental Kendaraan</a>
             </div>
         </div>
 

@@ -1,12 +1,46 @@
 <?php
 include "../config/koneksi.php";
+include "../config/helper.php";
 
-$query = "SELECT booking.*, homestay.nama_homestay
-          FROM booking
-          JOIN homestay ON booking.homestay_id = homestay.id
-          ORDER BY booking.created_at DESC";
+wajibLogin();
+$uid = (int) $_SESSION['user_id'];
 
-$result = mysqli_query($koneksi, $query);
+$semua = [];
+
+foreach (qAll($koneksi,
+    "SELECT b.*, h.nama_homestay FROM booking b
+     JOIN homestay h ON b.homestay_id = h.id WHERE b.user_id = ?", 'i', [$uid]) as $r) {
+    $semua[] = ['jenis' => 'homestay', 'id' => $r['id'], 'kode' => 'HS-' . str_pad($r['id'], 4, '0', STR_PAD_LEFT),
+        'judul' => $r['nama_homestay'], 'total' => $r['total_harga'], 'status' => $r['status'], 'created_at' => $r['created_at'],
+        'info' => ['Nama Pemesan' => $r['nama_pemesan'], 'Check-in' => $r['tanggal_checkin'], 'Check-out' => $r['tanggal_checkout'],
+                   'Jumlah Tamu' => $r['jumlah_tamu'], 'Jumlah Malam' => $r['jumlah_malam']]];
+}
+foreach (qAll($koneksi,
+    "SELECT b.*, p.nama_paket FROM booking_paket b
+     JOIN paket_wisata p ON b.paket_id = p.id WHERE b.user_id = ?", 'i', [$uid]) as $r) {
+    $semua[] = ['jenis' => 'paket', 'id' => $r['id'], 'kode' => 'PW-' . str_pad($r['id'], 4, '0', STR_PAD_LEFT),
+        'judul' => $r['nama_paket'], 'total' => $r['total_harga'], 'status' => $r['status'], 'created_at' => $r['created_at'],
+        'info' => ['Nama Pemesan' => $r['nama_pemesan'], 'Tanggal Kunjungan' => $r['tanggal_kunjungan'], 'Jumlah Orang' => $r['jumlah_orang']]];
+}
+foreach (qAll($koneksi,
+    "SELECT b.*, r.nama_kendaraan FROM booking_rental b
+     JOIN rental r ON b.rental_id = r.id WHERE b.user_id = ?", 'i', [$uid]) as $r) {
+    $semua[] = ['jenis' => 'rental', 'id' => $r['id'], 'kode' => 'RK-' . str_pad($r['id'], 4, '0', STR_PAD_LEFT),
+        'judul' => $r['nama_kendaraan'], 'total' => $r['total_harga'], 'status' => $r['status'], 'created_at' => $r['created_at'],
+        'info' => ['Nama Pemesan' => $r['nama_pemesan'], 'Mulai Sewa' => $r['tanggal_mulai'], 'Selesai Sewa' => $r['tanggal_selesai'],
+                   'Jumlah Hari' => $r['jumlah_hari']]];
+}
+
+usort($semua, function ($a, $b) { return strcmp($b['created_at'], $a['created_at']); });
+
+$fJenis = $_GET['jenis'] ?? '';
+$fStatus = $_GET['status'] ?? '';
+$semua = array_values(array_filter($semua, function ($x) use ($fJenis, $fStatus) {
+    return ($fJenis === '' || $x['jenis'] === $fJenis) && ($fStatus === '' || $x['status'] === $fStatus);
+}));
+
+$label = ['homestay' => 'Homestay', 'paket' => 'Paket Wisata', 'rental' => 'Rental Kendaraan'];
+$sel = function ($k, $v) { return (($_GET[$k] ?? '') === $v) ? ' selected' : ''; };
 ?>
 
 <!DOCTYPE html>
@@ -19,78 +53,82 @@ $result = mysqli_query($koneksi, $query);
 </head>
 <body>
 
-<header class="navbar">
-    <a href="../index.html" class="logo">JogjaYuk!</a>
-
-    <nav class="menu">
-        <a href="../index.html">Beranda</a>
-        <a href="homestay.php">Homestay</a>
-        <a href="paketWisata.html">Paket Wisata</a>
-        <a href="rental.html">Rental</a>
-        <a href="riwayatBooking.php" class="aktif">Riwayat Booking</a>
-    </nav>
-</header>
+<?php navbarHalaman('riwayat'); ?>
 
 <main class="halaman-katalog">
 
     <div class="judul-katalog">
         <p class="slogan">Perjalananmu Bersama JogjaYuk!</p>
         <h1>Riwayat Booking</h1>
-        <p>Daftar pemesanan homestay yang telah dilakukan.</p>
+        <p>Daftar pemesanan homestay, paket wisata, dan rental yang telah dilakukan.</p>
     </div>
+
+    <?php tampilFlash(); ?>
+
+    <section>
+        <article class="kartu-produk" style="margin-bottom:24px">
+            <div class="isi-produk">
+                <form method="GET">
+                    <label>Jenis layanan</label>
+                    <select name="jenis">
+                        <option value="">Semua</option>
+                        <?php foreach ($label as $k => $v): ?>
+                            <option value="<?php echo $k; ?>"<?php echo $sel('jenis', $k); ?>><?php echo $v; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="">Semua</option>
+                        <option value="menunggu"<?php echo $sel('status', 'menunggu'); ?>>Menunggu</option>
+                        <option value="dikonfirmasi"<?php echo $sel('status', 'dikonfirmasi'); ?>>Dikonfirmasi</option>
+                        <option value="dibatalkan"<?php echo $sel('status', 'dibatalkan'); ?>>Dibatalkan</option>
+                    </select>
+
+                    <div>
+                        <button type="submit" class="tombol-detail" style="border:none">Terapkan</button>
+                        <a href="riwayatBooking.php" class="tombol-detail">Reset</a>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </section>
 
     <section class="grid-produk">
 
-        <?php if ($result && mysqli_num_rows($result) > 0): ?>
+        <?php if ($semua): ?>
 
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+            <?php foreach ($semua as $row): ?>
 
                 <article class="kartu-produk">
                     <div class="isi-produk">
 
-                        <h2>
-                            <?php echo htmlspecialchars($row['nama_homestay']); ?>
-                        </h2>
+                        <h2><?php echo e($row['judul']); ?></h2>
 
-                        <p>
-                            Nama Pemesan:
-                            <?php echo htmlspecialchars($row['nama_pemesan']); ?>
-                        </p>
+                        <p>Kode Booking: <?php echo e($row['kode']); ?> (<?php echo e($label[$row['jenis']]); ?>)</p>
 
-                        <p>
-                            Check-in:
-                            <?php echo htmlspecialchars($row['tanggal_checkin']); ?>
-                        </p>
+                        <?php foreach ($row['info'] as $k => $v): ?>
+                            <p><?php echo e($k); ?>: <?php echo e($v); ?></p>
+                        <?php endforeach; ?>
 
-                        <p>
-                            Check-out:
-                            <?php echo htmlspecialchars($row['tanggal_checkout']); ?>
-                        </p>
+                        <h3>Total Harga: Rp <?php echo number_format($row['total'], 0, ',', '.'); ?></h3>
 
-                        <p>
-                            Jumlah Tamu:
-                            <?php echo htmlspecialchars($row['jumlah_tamu']); ?>
-                        </p>
+                        <p>Status: <?php echo e($row['status']); ?></p>
 
-                        <p>
-                            Jumlah Malam:
-                            <?php echo htmlspecialchars($row['jumlah_malam']); ?>
-                        </p>
-
-                        <h3>
-                            Total Harga:
-                            Rp <?php echo number_format($row['total_harga'], 0, ',', '.'); ?>
-                        </h3>
-
-                        <p>
-                            Status:
-                            <?php echo htmlspecialchars($row['status']); ?>
-                        </p>
+                        <?php if ($row['status'] === 'menunggu'): ?>
+                            <form method="POST" action="batalBooking.php"
+                                  onsubmit="return confirm('Yakin ingin membatalkan pemesanan ini?');">
+                                <?php echo csrfField(); ?>
+                                <input type="hidden" name="jenis" value="<?php echo e($row['jenis']); ?>">
+                                <input type="hidden" name="id" value="<?php echo (int) $row['id']; ?>">
+                                <button type="submit" class="tombol-detail" style="border:none">Batalkan Pesanan</button>
+                            </form>
+                        <?php endif; ?>
 
                     </div>
                 </article>
 
-            <?php endwhile; ?>
+            <?php endforeach; ?>
 
         <?php else: ?>
 

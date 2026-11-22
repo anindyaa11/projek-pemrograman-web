@@ -1,8 +1,25 @@
 <?php
 session_start();
 include "../config/koneksi.php";
+include "../config/helper.php";
 
 $pesan = "";
+$sukses = "";
+
+$tujuan = urlAman($_GET['redirect'] ?? '', '');
+
+if (isset($_SESSION["user_id"])) {
+    header("Location: " . ($tujuan !== '' ? $tujuan : "../index.php"));
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    if (isset($_GET["daftar"])) {
+        $sukses = "Pendaftaran berhasil! Silakan login dengan akun barumu.";
+    } elseif (isset($_GET["wajib"]) || isset($_GET["redirect"])) {
+        $pesan = "Kamu harus login terlebih dahulu untuk mengakses JogjaYuk!. Belum punya akun? Daftar dulu ya.";
+    }
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
@@ -18,14 +35,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = mysqli_fetch_assoc($hasil);
 
     if ($user && password_verify($password, $user["password"])) {
+        session_regenerate_id(true);
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["nama"] = $user["nama"];
         $_SESSION["role"] = $user["role"];
 
-        header("Location: ../index.php");
+        header("Location: " . ($tujuan !== '' ? $tujuan : "../index.php"));
         exit;
+    } elseif (!$user) {
+        $pesan = "Email belum terdaftar. Silakan daftar akun terlebih dahulu.";
     } else {
-        $pesan = "Email atau password salah!";
+        $pesan = "Password salah!";
     }
 }
 ?>
@@ -54,6 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="login-deskripsi">
                 Masuk ke akunmu untuk melanjutkan perjalanan.
             </p>
+
+            <?php if (!empty($sukses)): ?>
+                <p class="pesan-sukses"><?php echo htmlspecialchars($sukses); ?></p>
+            <?php endif; ?>
 
             <?php if (!empty($pesan)): ?>
                 <p class="pesan-error">
