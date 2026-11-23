@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -122,6 +121,7 @@ $result = mysqli_query(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Rental - JogjaYuk!</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -261,13 +261,18 @@ $result = mysqli_query(
                 <?php } ?>
             </td>
             <td><?php echo htmlspecialchars($row["status"]); ?></td>
-            <td>
-                <a href="kelolaRental.php?edit=<?php echo $row["id"]; ?>">Edit</a>
-                <a href="kelolaRental.php?hapus=<?php echo $row["id"]; ?>"
-                onclick="return confirm('Yakin ingin menghapus rental ini?')">
-                Hapus
-            </a>
-        </td>
+            <<td>
+                <a href="...?edit=<?= $data['id']; ?>"
+                   class="btn btn-primary btn-sm">
+                   Edit
+                </a>
+
+                <a href="...?hapus=<?= $data['id']; ?>"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Yakin ingin menghapus data ini?')">
+                   Hapus
+                </a>
+            </td>
         </tr>
 
         <?php
