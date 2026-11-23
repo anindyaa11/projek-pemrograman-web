@@ -261,18 +261,20 @@ $result = mysqli_query(
                 <?php } ?>
             </td>
             <td><?php echo htmlspecialchars($row["status"]); ?></td>
-            <<td>
-                <a href="...?edit=<?= $data['id']; ?>"
-                   class="btn btn-primary btn-sm">
-                   Edit
+           
+            <td>
+                <a href="kelolaRental.php?edit=<?= $row['id']; ?>"
+                class="btn btn-primary btn-sm">
+                    Edit
                 </a>
 
-                <a href="...?hapus=<?= $data['id']; ?>"
-                   class="btn btn-danger btn-sm"
-                   onclick="return confirm('Yakin ingin menghapus data ini?')">
-                   Hapus
+                <a href="kelolaRental.php?hapus=<?= $row['id']; ?>"
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('Yakin ingin menghapus data rental ini?')">
+                    Hapus
                 </a>
             </td>
+
         </tr>
 
         <?php

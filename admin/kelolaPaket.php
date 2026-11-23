@@ -311,14 +311,18 @@ $queryData = mysqli_query(
             <td><?php echo htmlspecialchars($row["status"]); ?></td>
 
             <td>
-                <a href="...?edit=<?= $data['id']; ?>"class="btn btn-primary btn-sm">
-                Edit
+                <a href="kelolaPaket.php?edit=<?= $row['id']; ?>"
+                class="btn btn-primary btn-sm">
+                    Edit
                 </a>
-            
-            <a href="...?hapus=<?= $data['id']; ?>"class="btn btn-danger btn-sm"
-            onclick="return confirm('Yakin ingin menghapus data ini?')">
-            Hapus
-            </a>
+
+                <a href="kelolaPaket.php?hapus=<?= $row['id']; ?>"
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('Yakin ingin menghapus paket wisata ini?')">
+                    Hapus
+                </a>
+            </td>
+
         </td>
         </tr>
 
